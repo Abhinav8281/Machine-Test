@@ -41,8 +41,8 @@
     <p id="errorMessage" class="error"></p>
 
     <script>
-    fetch("https://fakestoreapi.com/products")
-     .then((response) => response.json())
+      fetch("https://fakestoreapi.com/products")
+        .then((response) => response.json())
         .then((data) => {
           data.forEach((products) => {
             const row = document.createElement("tr");
@@ -70,9 +70,7 @@
             document.getElementById("data-body").appendChild(row);
           });
         })
-        .catch((error) => console.log('Error',error));
-
-      
+        .catch((error) => console.log("Error", error));
     </script>
   </body>
 </html>
