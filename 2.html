@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #1a1616;
+      }
+      th {
+        background-color: #cd4444;
+      }
+
+      tr:hover {
+        background-color: rgb(15, 211, 237);
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Rating</th>
+          <th>Rating Count</th>
+        </tr>
+      </thead>
+      <tbody id="data-body"></tbody>
+    </table>
+    <p id="errorMessage" class="error"></p>
+
+    <script>
+    fetch("https://fakestoreapi.com/products")
+     .then((response) => response.json())
+        .then((data) => {
+          data.forEach((products) => {
+            const row = document.createElement("tr");
+
+            const titleCell = document.createElement("td");
+            titleCell.textContent = products.title;
+            row.appendChild(titleCell);
+
+            const priceCell = document.createElement("td");
+            priceCell.textContent = products.price;
+            row.appendChild(priceCell);
+
+            const CategoryCell = document.createElement("td");
+            CategoryCell.textContent = products.category;
+            row.appendChild(CategoryCell);
+
+            const RatingCell = document.createElement("td");
+            RatingCell.textContent = products.rating.rate;
+            row.appendChild(RatingCell);
+
+            const RatingCountCell = document.createElement("td");
+            RatingCountCell.textContent = products.rating.count;
+            row.appendChild(RatingCountCell);
+
+            document.getElementById("data-body").appendChild(row);
+          });
+        })
+        .catch((error) => console.log('Error',error));
+
+      
+    </script>
+  </body>
+</html>
